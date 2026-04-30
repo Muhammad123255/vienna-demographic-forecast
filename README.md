@@ -1,2 +1,3 @@
 # vienna-demographic-forecast
-FAIR Data Science Part 3 project
+
+Data Stewardship Course – FAIR Data Science Part 3 Project
