@@ -1,0 +1,69 @@
+{
+  "metadata_standard": "FAIR4ML",
+  "project_title": "Forecasting Demographic Changes in the Population in Vienna using Machine Learning",
+  "model": {
+    "name": "Vienna demographic population forecasting model",
+    "version": "v1.0",
+    "model_artifact": "outputs/model_random_forest_population_forecast_v1.pkl",
+    "algorithm": {
+      "name": "Random Forest Regressor",
+      "library": "scikit-learn",
+      "library_version": "TODO"
+    },
+    "task_type": "regression",
+    "target_variable": "population_count",
+    "intended_use": "The model is intended to forecast aggregated demographic population counts in Vienna using historical population statistics grouped by district, sex, age group, and nationality group.",
+    "out_of_scope_use": "The model must not be used for individual-level prediction, legal decisions, migration policy decisions, or decisions affecting individual persons.",
+    "known_limitations": [
+      "The dataset contains aggregated demographic statistics and cannot represent individual-level behaviour.",
+      "The model depends on historical demographic trends and may not capture unexpected social, political, economic, or migration-related changes.",
+      "Small demographic groups may have fewer observations and therefore less stable forecasts.",
+      "The meaning of encoded categories such as SEX and AGE5 must be documented carefully to avoid misinterpretation."
+    ]
+  },
+  "training_data": {
+    "name": "Population by sex, 5-year age groups and nationality since 2002 - districts of Vienna",
+    "raw_file": "data/vie-bez-pop-sex-age5-stk-nat-geo4-2002f.csv",
+    "processed_file": "data/processed_population_long_v1.csv",
+    "source": "data.europa.eu / Statistik Austria",
+    "doi": "TODO",
+    "dbrepo_url": "TODO",
+    "description": "The dataset contains yearly population counts for Vienna from 2002 to 2025 by district, sex, 5-year age group, and nationality group."
+  },
+  "features": [
+    "REF_YEAR",
+    "DISTRICT_CODE",
+    "SUB_DISTRICT_CODE",
+    "SEX",
+    "AGE5",
+    "nationality_group"
+  ],
+  "hyperparameters": {
+    "n_estimators": "TODO",
+    "max_depth": "TODO",
+    "random_state": "TODO",
+    "train_test_split": "TODO"
+  },
+  "evaluation": {
+    "metrics": {
+      "MAE": "TODO",
+      "RMSE": "TODO",
+      "R2": "TODO"
+    },
+    "evaluation_script": "src/03_evaluate_model.py"
+  },
+  "licence": {
+    "input_data": "TODO",
+    "code": "MIT",
+    "model_and_outputs": "CC BY 4.0"
+  },
+  "related_resources": {
+    "github_repository": "https://github.com/Muhammad123255/vienna-demographic-forecast",
+    "github_release": "https://github.com/Muhammad123255/vienna-demographic-forecast/releases/tag/v1.0",
+    "zenodo_doi": "TODO",
+    "dbrepo_url": "TODO",
+    "tuwrd_model_deposit": "TODO",
+    "model_card": "docs/model-card.md",
+    "ro_crate": "ro-crate-metadata.json"
+  }
+}
