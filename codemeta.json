@@ -1,0 +1,44 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "vienna-demographic-forecast",
+  "description": "Machine learning workflow for forecasting demographic changes in Vienna using open population data.",
+  "version": "1.0",
+  "license": "https://spdx.org/licenses/MIT.html",
+  "codeRepository": "https://github.com/Muhammad123255/vienna-demographic-forecast",
+  "programmingLanguage": "Python",
+  "runtimePlatform": "Python 3.x",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Bernhard",
+      "familyName": "Siegl",
+      "identifier": "ORCID: TODO"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Muhammad Umer",
+      "familyName": "Raza",
+      "identifier": "ORCID: TODO"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Jannatul Jahan",
+      "familyName": "Bonny",
+      "identifier": "ORCID: TODO"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Usman",
+      "familyName": "Arif",
+      "identifier": "ORCID: TODO"
+    }
+  ],
+  "softwareRequirements": [
+    "pandas==2.2.2",
+    "numpy==1.26.4",
+    "scikit-learn==1.5.0",
+    "matplotlib==3.8.4",
+    "requests==2.31.0"
+  ]
+}
