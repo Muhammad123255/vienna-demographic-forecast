@@ -1,0 +1,133 @@
+-- -----------------------------------------------------
+-- Table: mydb.District
+-- Stores administrative district identifiers
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS mydb.District (
+    district_code INT NOT NULL,
+    nuts_code VARCHAR(10) NOT NULL,
+
+    PRIMARY KEY (district_code)
+) ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table: mydb.Sex
+-- Stores sex categories
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS mydb.Sex (
+    sex_id INT NOT NULL,
+    label VARCHAR(20) NOT NULL,
+
+    PRIMARY KEY (sex_id)
+) ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table: mydb.Age_group
+-- Stores age group classifications
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS mydb.Age_group (
+    age_group_id INT NOT NULL,
+    age_range VARCHAR(20) NOT NULL,
+
+    PRIMARY KEY (age_group_id)
+) ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table: mydb.Nationality_group
+-- Stores nationality group classifications
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS mydb.Nationality_group (
+    nationality_code VARCHAR(10) NOT NULL,
+    description VARCHAR(100) NULL,
+
+    PRIMARY KEY (nationality_code)
+) ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table: mydb.Time_dimension
+-- Stores temporal reference information
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS mydb.Time_dimension (
+    year INT NOT NULL,
+    reference_date DATE NOT NULL,
+
+    PRIMARY KEY (year)
+) ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table: mydb.Population_statistics
+-- Fact table containing population statistics
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS mydb.Population_statistics (
+    population_count INT NOT NULL,
+
+    nationality_code VARCHAR(10) NOT NULL,
+    district_code INT NOT NULL,
+    year INT NOT NULL,
+    sex_id INT NOT NULL,
+    age_group_id INT NOT NULL,
+
+    PRIMARY KEY (
+        district_code,
+        year,
+        sex_id,
+        age_group_id,
+        nationality_code
+    ),
+
+    INDEX fk_Population_statistics_Nationality_group_idx (
+        nationality_code ASC
+    ) VISIBLE,
+
+    INDEX fk_Population_statistics_District1_idx (
+        district_code ASC
+    ) VISIBLE,
+
+    INDEX fk_Population_statistics_Time_dimension1_idx (
+        year ASC
+    ) VISIBLE,
+
+    INDEX fk_Population_statistics_Sex1_idx (
+        sex_id ASC
+    ) VISIBLE,
+
+    INDEX fk_Population_statistics_Age_group1_idx (
+        age_group_id ASC
+    ) VISIBLE,
+
+    CONSTRAINT fk_Population_statistics_Nationality_group
+        FOREIGN KEY (nationality_code)
+        REFERENCES mydb.Nationality_group (nationality_code)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+
+    CONSTRAINT fk_Population_statistics_District1
+        FOREIGN KEY (district_code)
+        REFERENCES mydb.District (district_code)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+
+    CONSTRAINT fk_Population_statistics_Time_dimension1
+        FOREIGN KEY (year)
+        REFERENCES mydb.Time_dimension (year)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+
+    CONSTRAINT fk_Population_statistics_Sex1
+        FOREIGN KEY (sex_id)
+        REFERENCES mydb.Sex (sex_id)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+
+    CONSTRAINT fk_Population_statistics_Age_group1
+        FOREIGN KEY (age_group_id)
+        REFERENCES mydb.Age_group (age_group_id)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION
+
+) ENGINE = InnoDB;
