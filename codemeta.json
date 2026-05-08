@@ -27,12 +27,12 @@
       "familyName": "Bonny",
       "identifier": "ORCID: TODO"
     },
-    {
-      "@type": "Person",
-      "givenName": "Usman",
-      "familyName": "Arif",
-      "identifier": "ORCID: TODO"
-    }
+   {
+  "@type": "Person",
+  "givenName": "Usman",
+  "familyName": "Arif",
+  "identifier": "https://orcid.org/0009-0004-1313-6270"
+}
   ],
   "softwareRequirements": [
     "pandas==2.2.2",
