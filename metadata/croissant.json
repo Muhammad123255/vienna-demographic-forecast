@@ -1,0 +1,113 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/"
+  },
+  "@type": "Dataset",
+  "name": "Vienna Demographic Forecast Dataset",
+  "description": "Demographic population dataset for Vienna districts containing yearly population statistics grouped by sex, age group, and nationality categories.",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://github.com/Muhammad123255/vienna-demographic-forecast",
+  "creator": [
+    {
+      "@type": "Person",
+      "name": "Bernhard Siegl",
+      "identifier": "ORCID: TODO"
+    },
+    {
+      "@type": "Person",
+      "name": "Muhammad Umer Raza",
+      "identifier": "https://orcid.org/0009-0003-6708-7518"
+    },
+    {
+      "@type": "Person",
+      "name": "Jannatul Jahan Bonny",
+      "identifier": "ORCID: TODO"
+    },
+    {
+      "@type": "Person",
+      "name": "Usman Arif",
+      "identifier": "https://orcid.org/0009-0004-1313-6270"
+    }
+  ],
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "raw-demographic-data",
+      "name": "Raw Vienna demographic dataset",
+      "contentUrl": "data/vie-bez-pop-sex-age5-stk-nat-geo4-2002f.csv",
+      "encodingFormat": "text/csv"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "processed-demographic-data",
+      "name": "Processed demographic dataset",
+      "contentUrl": "data/processed_population_long_v1.csv",
+      "encodingFormat": "text/csv"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "name": "population_data",
+      "description": "Population statistics grouped by district, year, sex, age group, and nationality.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "name": "NUTS",
+          "dataType": "string"
+        },
+        {
+          "@type": "cr:Field",
+          "name": "DISTRICT_CODE",
+          "dataType": "integer"
+        },
+        {
+          "@type": "cr:Field",
+          "name": "SUB_DISTRICT_CODE",
+          "dataType": "integer"
+        },
+        {
+          "@type": "cr:Field",
+          "name": "REF_YEAR",
+          "dataType": "integer"
+        },
+        {
+          "@type": "cr:Field",
+          "name": "REF_DATE",
+          "dataType": "date"
+        },
+        {
+          "@type": "cr:Field",
+          "name": "SEX",
+          "dataType": "string"
+        },
+        {
+          "@type": "cr:Field",
+          "name": "AGE5",
+          "dataType": "string"
+        },
+        {
+          "@type": "cr:Field",
+          "name": "AUT",
+          "dataType": "integer"
+        },
+        {
+          "@type": "cr:Field",
+          "name": "EEA",
+          "dataType": "integer"
+        },
+        {
+          "@type": "cr:Field",
+          "name": "REU",
+          "dataType": "integer"
+        },
+        {
+          "@type": "cr:Field",
+          "name": "TCN",
+          "dataType": "integer"
+        }
+      ]
+    }
+  ]
+}
