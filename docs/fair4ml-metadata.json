@@ -66,4 +66,42 @@
     "model_card": "docs/model-card.md",
     "ro_crate": "ro-crate-metadata.json"
   }
+,
+  "fair_principles": {
+    "findable": true,
+    "accessible": true,
+    "interoperable": true,
+    "reusable": true
+  },
+
+  "reproducibility": {
+    "python_version": "3.x",
+    "requirements_file": "requirements.txt",
+    "sql_views": "sql/views.sql",
+    "api_loader": "src/dbrepo_api_loader.py",
+    "notebook": "notebooks/dbrepo_api_test.ipynb"
+  },
+
+  "contributors": [
+    {
+      "name": "Bernhard Siegl",
+      "role": "Schema design and DBRepo preparation",
+      "orcid": "ORCID: TODO"
+    },
+    {
+      "name": "Muhammad Umer Raza",
+      "role": "Semantic mappings and ontology integration",
+      "orcid": "https://orcid.org/0009-0003-6708-7518"
+    },
+    {
+      "name": "Jannatul Jahan Bonny",
+      "role": "Metadata and FAIR documentation",
+      "orcid": "ORCID: TODO"
+    },
+    {
+      "name": "Usman Arif",
+      "role": "SQL views, DBRepo API integration, ML preparation",
+      "orcid": "https://orcid.org/0009-0004-1313-6270"
+    }
+  ]
 }
