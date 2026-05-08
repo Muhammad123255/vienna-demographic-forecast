@@ -498,12 +498,15 @@ Creative Commons Attribution 4.0 International (CC BY 4.0)
 
 ---
 
-# Contributors
+## Contributors
 
-* A — Bernhard Siegl — ORCID: TODO
-* B — Muhammad Umer Raza — ORCID: TODO
-* C — Jannatul Jahan Bonny — ORCID: TODO
-* D — Usman Arif — ORCID: [https://orcid.org/0009-0004-1313-6270](https://orcid.org/0009-0004-1313-6270)
+| Role | Name | ORCID |
+|---|---|---|
+| A | Bernhard Siegl | https://orcid.org/0009-0008-7401-6845 |
+| B | Muhammad Umer Raza | https://orcid.org/0009-0003-6708-7518 |
+| C | Jannatul Jahan Bonny | ORCID: TODO |
+| D | Usman Arif | https://orcid.org/0009-0004-1313-6270 |
+
 
 ---
 
