@@ -21,3 +21,34 @@ The raw dataset contains demographic population counts by year, district, sex, a
 ## Justification
 
 Most numeric fields in the dataset are not physical measurements. Some are identifiers or encoded categories. For population counts, a dimensionless number unit is used because the values represent counts of persons. For age-related information, year is used because the age groups represent intervals in years.
+
+---
+
+## FAIR Interoperability Support
+
+The unit mappings support:
+
+- machine-readable demographic interpretation
+- standardized statistical preprocessing
+- reproducible ML workflows
+- semantic interoperability
+- FAIR metadata integration
+
+---
+
+## Related Documentation
+
+| File | Purpose |
+|---|---|
+| docs/semantic-mapping.md | Semantic ontology mapping |
+| docs/database-schema.md | Database schema description |
+| metadata/croissant.json | Dataset metadata |
+| metadata/fair4ml-metadata.json | FAIR ML metadata |
+
+---
+
+## Repository
+
+GitHub repository:
+
+https://github.com/Muhammad123255/vienna-demographic-forecast
