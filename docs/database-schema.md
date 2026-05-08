@@ -11,8 +11,24 @@ The schema was designed to support:
 - machine learning preprocessing
 - FAIR metadata integration
 - DBRepo API access
+- reproducible demographic analytics
 
 The schema follows Third Normal Form (3NF) principles to reduce redundancy and improve data consistency.
+
+---
+
+# Database Design Overview
+
+The database schema is designed to support:
+
+- demographic analytics
+- SQL aggregation workflows
+- machine learning preprocessing
+- FAIR metadata generation
+- semantic interoperability
+- DBRepo integration
+
+The schema stores yearly demographic population observations for Vienna districts.
 
 ---
 
@@ -28,7 +44,7 @@ This table stores yearly demographic population statistics for Vienna districts.
 | DISTRICT_CODE | INTEGER | Vienna district code |
 | SUB_DISTRICT_CODE | INTEGER | Sub-district code |
 | REF_YEAR | INTEGER | Reference year |
-| REF_DATE | DATE | Reference date |
+| REF_DATE | DATE | Reference observation date |
 | SEX | VARCHAR | Sex category |
 | AGE5 | VARCHAR | 5-year age group |
 | AUT | INTEGER | Austrian nationals population |
@@ -59,10 +75,11 @@ This combination uniquely identifies demographic records for a specific populati
 The schema structure supports:
 
 - yearly demographic aggregation
-- district-level analysis
+- district-level demographic analysis
 - nationality-group analysis
 - machine learning feature extraction
 - SQL analytical views
+- forecasting-ready demographic preprocessing
 
 ---
 
