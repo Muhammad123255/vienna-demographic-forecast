@@ -1,4 +1,5 @@
 # Vienna-Demographic-Forecast
+
 [![DOI](https://zenodo.org/badge/1016481592.svg)](https://doi.org/10.5281/zenodo.20120239)
 
 Data Stewardship Course — FAIR Data Science Part 3 Project
@@ -533,7 +534,7 @@ Creative Commons Attribution 4.0 International (CC BY 4.0)
 |---|---|
 | GitHub Repository | https://github.com/Muhammad123255/vienna-demographic-forecast |
 | GitHub Release | https://github.com/Muhammad123255/vienna-demographic-forecast/releases/tag/v1.0 |
-| Zenodo DOI | 10.5281/zenodo.20120239 |
+| Zenodo DOI | [![DOI](https://zenodo.org/badge/1016481592.svg)](https://doi.org/10.5281/zenodo.20120239) |
 | DBRepo Entry | https://test.dbrepo.tuwien.ac.at/database/38707917-e942-45c3-a3dd-d2bfc1c106af |
 
 ---
