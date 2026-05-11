@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite it as follows."
+title: "Vienna Demographic Forecast Dataset"
+version: 1.0.0
+doi: 10.5281/zenodo.20120239
+url: "https://github.com/Muhammad123255/vienna-demographic-forecast"
+date-released: 2026-05-11
+license: MIT
+
+authors:
+  - family-names: "Siegl"
+    given-names: "Bernhard"
+    orcid: "https://orcid.org/0009-0008-7401-6845"
+  - family-names: "Raza"
+    given-names: "Muhammad Umer"
+    orcid: "https://orcid.org/0009-0003-6708-7518"
+  - family-names: "Bonny"
+    given-names: "Jannatul Jahan"
+    orcid: "TODO"
+  - family-names: "Arif"
+    given-names: "Usman"
+    orcid: "https://orcid.org/0009-0004-1313-6270"
+
+repository-code: "https://github.com/Muhammad123255/vienna-demographic-forecast"
+keywords:
+  - population
+  - demographics
+  - Vienna
+  - TCN
+  - migration
+  - machine learning
