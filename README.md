@@ -1,5 +1,7 @@
 # Vienna-Demographic-Forecast
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20120239.svg)](https://doi.org/10.5281/zenodo.20120239)
+
 Data Stewardship Course — FAIR Data Science Part 3 Project
 
 ---
@@ -16,27 +18,27 @@ This project uses open demographic data to forecast population changes in Vienna
 
 The input dataset contains yearly population counts from 2002 to 2025 grouped by:
 
-* district
-* sex
-* 5-year age group
-* nationality group
+- district
+- sex
+- 5-year age group
+- nationality group
 
 The workflow combines:
 
-* demographic data preprocessing
-* SQL aggregation views
-* metadata generation
-* FAIR documentation
-* DBRepo API preparation
-* machine learning pipeline preparation
-* reproducible research workflows
+- demographic data preprocessing
+- SQL aggregation views
+- metadata generation
+- FAIR documentation
+- DBRepo API preparation
+- machine learning pipeline preparation
+- reproducible research workflows
 
 The project follows FAIR principles:
 
-* Findable
-* Accessible
-* Interoperable
-* Reusable
+- Findable
+- Accessible
+- Interoperable
+- Reusable
 
 ---
 
@@ -170,74 +172,78 @@ config_model_training.yaml
 
 The project uses demographic population data from Statistik Austria.
 
-Dataset title:
+## Dataset Title
 
-**Population by sex, 5-year age groups and nationality since 2002 - districts of Vienna**
+Population by sex, 5-year age groups and nationality since 2002 - districts of Vienna
 
 The dataset contains yearly population counts from 2002 to 2025 grouped by:
 
-* district
-* sex
-* age group
-* nationality group
+- district
+- sex
+- age group
+- nationality group
 
 Nationality groups are represented by the columns:
 
-* `AUT`
-* `EEA`
-* `REU`
-* `TCN`
+- AUT
+- EEA
+- REU
+- TCN
 
-Source:
+---
 
-* data.gv.at
-* data.europa.eu
+## Sources
+
+- data.gv.at
+- data.europa.eu
 
 Original provider:
 
-* Statistik Austria
+- Statistik Austria
 
-Input data licence:
+---
 
-* Creative Commons Attribution 4.0 International (CC BY 4.0)
+## Input Data Licence
+
+Creative Commons Attribution 4.0 International (CC BY 4.0)
 
 ---
 
 # Raw Dataset Columns
 
-| Column              | Meaning                                           |
-| ------------------- | ------------------------------------------------- |
-| `NUTS`              | NUTS region code                                  |
-| `DISTRICT_CODE`     | Vienna district code                              |
-| `SUB_DISTRICT_CODE` | Sub-district code                                 |
-| `REF_YEAR`          | Reference year                                    |
-| `REF_DATE`          | Reference date                                    |
-| `SEX`               | Encoded sex category                              |
-| `AGE5`              | Encoded 5-year age group                          |
-| `AUT`               | Population count for Austrian nationals           |
-| `EEA`               | Population count for EEA nationals                |
-| `REU`               | Population count for remaining European nationals |
-| `TCN`               | Population count for third-country nationals      |
+| Column | Meaning |
+|---|---|
+| NUTS | NUTS region code |
+| DISTRICT_CODE | Vienna district code |
+| SUB_DISTRICT_CODE | Sub-district code |
+| REF_YEAR | Reference year |
+| REF_DATE | Reference date |
+| SEX | Encoded sex category |
+| AGE5 | Encoded 5-year age group |
+| AUT | Population count for Austrian nationals |
+| EEA | Population count for EEA nationals |
+| REU | Population count for remaining European nationals |
+| TCN | Population count for third-country nationals |
 
 ---
 
 # Processed Dataset
 
-For the machine learning workflow, the nationality columns `AUT`, `EEA`, `REU`, and `TCN` are transformed into long format.
+For the machine learning workflow, the nationality columns AUT, EEA, REU, and TCN are transformed into long format.
 
 The processed dataset contains:
 
-| Column              | Meaning                                        |
-| ------------------- | ---------------------------------------------- |
-| `NUTS`              | NUTS region code                               |
-| `DISTRICT_CODE`     | Vienna district code                           |
-| `SUB_DISTRICT_CODE` | Sub-district code                              |
-| `REF_YEAR`          | Reference year                                 |
-| `REF_DATE`          | Reference date                                 |
-| `SEX`               | Sex category                                   |
-| `AGE5`              | 5-year age group category                      |
-| `nationality_group` | Nationality group (`AUT`, `EEA`, `REU`, `TCN`) |
-| `population_count`  | Population count for selected group            |
+| Column | Meaning |
+|---|---|
+| NUTS | NUTS region code |
+| DISTRICT_CODE | Vienna district code |
+| SUB_DISTRICT_CODE | Sub-district code |
+| REF_YEAR | Reference year |
+| REF_DATE | Reference date |
+| SEX | Sex category |
+| AGE5 | 5-year age group category |
+| nationality_group | Nationality group (AUT, EEA, REU, TCN) |
+| population_count | Population count for selected group |
 
 ---
 
@@ -263,17 +269,30 @@ sql/views.sql
 
 The SQL views generate:
 
-* yearly population summaries
-* district-level aggregations
-* nationality summaries
-* demographic feature views
-* ML-ready analytical tables
+- yearly population summaries
+- district-level aggregations
+- nationality summaries
+- TCN share analysis over time
+- population pyramid data
+- age dependency ratios
+- sex ratios by age group
+- ML-ready analytical tables
 
-Example views:
+---
 
-* yearly_population_summary
-* district_population_summary
-* nationality_population_summary
+## Complete List of Views
+
+| View Name | Purpose |
+|---|---|
+| yearly_population_summary | Total population per year |
+| district_population_summary | Population per district per year |
+| nationality_population_summary | Breakdown by AUT/EEA/REU/TCN per year |
+| v_tcn_share_by_year | TCN percentage over time |
+| v_tcn_share_by_age | TCN percentage by age group |
+| v_population_pyramid | Age-sex structure for population pyramid plots |
+| v_ml_training_sample | Class-balanced sample for ML training |
+| v_age_dependency_ratios | Youth and old-age dependency ratios |
+| v_sex_ratio_by_age | Males per 100 females by age group |
 
 ---
 
@@ -287,11 +306,11 @@ src/01_preprocess_data.py
 
 The preprocessing workflow includes:
 
-* cleaning demographic records
-* handling missing values
-* feature preparation
-* dataset transformation
-* export preparation for machine learning workflows
+- cleaning demographic records
+- handling missing values
+- feature preparation
+- dataset transformation
+- export preparation for machine learning workflows
 
 ---
 
@@ -299,13 +318,13 @@ The preprocessing workflow includes:
 
 The project includes DBRepo API preparation for FAIR repository integration.
 
-Python API loader:
+## Python API Loader
 
 ```text
 src/dbrepo_api_loader.py
 ```
 
-Notebook for testing:
+## Notebook for Testing
 
 ```text
 notebooks/dbrepo_api_test.ipynb
@@ -313,62 +332,44 @@ notebooks/dbrepo_api_test.ipynb
 
 The DBRepo workflow is prepared for:
 
-* REST API testing
-* demographic SQL view retrieval
-* dataframe loading
-* metadata integration
+- REST API testing
+- demographic SQL view retrieval
+- dataframe loading
+- metadata integration
 
-## API Information
+---
 
-API base URL:
+# API Information
 
-```text
-TODO
-```
-
-Authentication method:
+## API Base URL
 
 ```text
-TODO
+https://test.dbrepo.tuwien.ac.at/api
 ```
 
-Endpoints used:
+## Dataset ID
 
-| Purpose                          | Endpoint |
-| -------------------------------- | -------- |
-| Retrieve input data              | TODO     |
-| Retrieve ML-ready view           | TODO     |
-| Retrieve aggregated feature view | TODO     |
+```text
+38707917-e942-45c3-a3dd-d2bfc1c106af
+```
+
+## Authentication Method
+
+```text
+None (public dataset)
+```
 
 ---
 
 # Metadata Files
 
-The repository includes multiple FAIR metadata standards.
-
-## Croissant Metadata
-
-```text
-metadata/croissant.json
-```
-
-## FAIR4ML Metadata
-
-```text
-metadata/fair4ml-metadata.json
-```
-
-## Model Card
-
-```text
-metadata/model-card.md
-```
-
-## Citation Metadata
-
-```text
-CITATION.cff
-```
+| Metadata Type | File |
+|---|---|
+| Croissant Metadata | metadata/croissant.json |
+| FAIR4ML Metadata | metadata/fair4ml-metadata.json |
+| Model Card | metadata/model-card.md |
+| CodeMeta | codemeta.json |
+| Citation Metadata | CITATION.cff |
 
 ---
 
@@ -376,19 +377,19 @@ CITATION.cff
 
 Planned machine learning workflow:
 
-1. demographic data preprocessing
-2. feature engineering
-3. training dataset creation
-4. model training
-5. prediction generation
-6. evaluation and visualization
+- demographic data preprocessing
+- feature engineering
+- training dataset creation
+- model training
+- prediction generation
+- evaluation and visualization
 
 Potential machine learning models:
 
-* Random Forest
-* XGBoost
-* Linear Regression
-* Time-series forecasting models
+- Random Forest
+- XGBoost
+- Linear Regression
+- Time-series forecasting models
 
 ---
 
@@ -409,18 +410,34 @@ pip install -r requirements.txt
 
 ---
 
-# Reproducibility
+# Reproduction Instructions
 
-Run preprocessing:
+## Step 1: Preprocess the Data
 
 ```bash
 python src/01_preprocess_data.py
 ```
 
-Run DBRepo API loader:
+## Step 2: Test DBRepo API Connection
 
 ```bash
-python src/dbrepo_api_loader.py
+jupyter notebook notebooks/dbrepo_api_test.ipynb
+```
+
+## Step 3: Run SQL Views
+
+Execute the views in `sql/views.sql`.
+
+## Step 4: Train Models
+
+```bash
+python src/02_train_model.py
+```
+
+## Step 5: Evaluate Results
+
+```bash
+python src/03_evaluate_model.py
 ```
 
 ---
@@ -429,12 +446,14 @@ python src/dbrepo_api_loader.py
 
 Main Python libraries:
 
-* pandas
-* numpy
-* scikit-learn
-* matplotlib
-* requests
-* jupyter
+- pandas
+- numpy
+- scikit-learn
+- matplotlib
+- requests
+- jupyter
+
+Full list with versions: `requirements.txt`
 
 ---
 
@@ -442,14 +461,14 @@ Main Python libraries:
 
 The project produces:
 
-* cleaned datasets
-* feature-engineered datasets
-* train/validation/test splits
-* trained machine learning models
-* prediction files
-* evaluation metrics
-* plots and visualisations
-* DBRepo-compatible demographic summaries
+- cleaned datasets
+- feature-engineered datasets
+- train/validation/test splits
+- trained machine learning models
+- prediction files
+- evaluation metrics
+- plots and visualisations
+- DBRepo-compatible demographic summaries
 
 ---
 
@@ -457,11 +476,7 @@ The project produces:
 
 ## Input Dataset License
 
-The demographic dataset from Statistik Austria is provided under:
-
-```text
 Creative Commons Attribution 4.0 International (CC BY 4.0)
-```
 
 Source dataset:
 
@@ -469,26 +484,30 @@ Source dataset:
 https://www.statistik.at/
 ```
 
+---
+
 ## Software License
 
 This repository uses the MIT License.
 
-The license file is included in:
+License file:
 
 ```text
 LICENSE
 ```
 
+---
+
 ## Produced Data License
 
 Produced artefacts including:
 
-* cleaned datasets
-* ML-ready datasets
-* predictions
-* evaluation results
-* visualisations
-* trained models
+- cleaned datasets
+- ML-ready datasets
+- predictions
+- evaluation results
+- visualisations
+- trained models
 
 are licensed under:
 
@@ -498,7 +517,7 @@ Creative Commons Attribution 4.0 International (CC BY 4.0)
 
 ---
 
-## Contributors
+# Contributors
 
 | Role | Name | ORCID |
 |---|---|---|
@@ -507,93 +526,27 @@ Creative Commons Attribution 4.0 International (CC BY 4.0)
 | C | Jannatul Jahan Bonny | ORCID: TODO |
 | D | Usman Arif | https://orcid.org/0009-0004-1313-6270 |
 
-
 ---
 
 # Persistent Identifiers
 
-GitHub repository:
-
-```text
-https://github.com/Muhammad123255/vienna-demographic-forecast
-```
-
-GitHub release:
-
-```text
-https://github.com/Muhammad123255/vienna-demographic-forecast/releases/tag/v1.0
-```
-
-Zenodo DOI badge:
-
-```text
-TODO after Zenodo release
-```
-
-DBRepo entry:
-
-```text
-TODO
-```
-
-TU Wien Research Data Repository model deposit:
-
-```text
-TODO
-```
-
-TU Wien Research Data Repository generated-data deposit:
-
-```text
-TODO
-```
+| Artefact | Identifier |
+|---|---|
+| GitHub Repository | https://github.com/Muhammad123255/vienna-demographic-forecast |
+| GitHub Release | https://github.com/Muhammad123255/vienna-demographic-forecast/releases/tag/v1.0 |
+| Zenodo DOI | 10.5281/zenodo.20120239 |
+| DBRepo Entry | https://test.dbrepo.tuwien.ac.at/database/38707917-e942-45c3-a3dd-d2bfc1c106af |
 
 ---
 
 # Related Documentation
 
-* Unit mapping: `docs/unit-mapping.md`
-* Database schema: `docs/database-schema.md`
-* FAIR4ML metadata: `metadata/fair4ml-metadata.json`
-* Model card: `metadata/model-card.md`
-* CodeMeta metadata: `codemeta.json`
-* Croissant metadata: `metadata/croissant.json`
+- docs/unit-mapping.md
+- docs/database-schema.md
+- metadata/fair4ml-metadata.json
+- metadata/model-card.md
+- codemeta.json
+- metadata/croissant.json
 
 ---
 
-# Citation
-
-Please cite this repository using the metadata provided in:
-
-```text
-CITATION.cff
-```
-
----
-
-# FAIR Principles Compliance
-
-This project supports FAIR data stewardship practices through:
-
-* metadata documentation
-* persistent identifiers
-* reusable licensing
-* interoperable data formats
-* reproducible workflows
-* repository integration preparation
-
----
-
-# Status
-
-Current project progress includes:
-
-* demographic preprocessing
-* SQL aggregation views
-* FAIR metadata preparation
-* ORCID integration
-* DBRepo API preparation
-* repository documentation
-* citation metadata
-
-Machine learning forecasting model development and evaluation are currently in progress.
