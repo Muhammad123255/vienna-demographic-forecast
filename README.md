@@ -509,16 +509,6 @@ Produced artefacts including:
 - visualisations
 - trained models
 
-## Contributors
-- A — Bernhard Siegl — ORCID: TODO
-- B — Muhammad Umer Raza — ORCID: TODO
-- C — Jannatul Jahan Bonny — ORCID: https://orcid.org/0009-0004-6244-3437
-- D — Usman Arif — ORCID: TODO
-
-```text
-Creative Commons Attribution 4.0 International (CC BY 4.0)
-```
-
 ---
 
 # Contributors
@@ -527,7 +517,7 @@ Creative Commons Attribution 4.0 International (CC BY 4.0)
 |---|---|---|
 | A | Bernhard Siegl | https://orcid.org/0009-0008-7401-6845 |
 | B | Muhammad Umer Raza | https://orcid.org/0009-0003-6708-7518 |
-| C | Jannatul Jahan Bonny | ORCID: TODO |
+| C | Jannatul Jahan Bonny | https://orcid.org/0009-0004-6244-3437 |
 | D | Usman Arif | https://orcid.org/0009-0004-1313-6270 |
 
 ---
