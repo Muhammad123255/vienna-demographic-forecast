@@ -65,8 +65,8 @@
     "tuwrd_model_deposit": "TODO",
     "model_card": "docs/model-card.md",
     "ro_crate": "ro-crate-metadata.json"
-  }
-,
+  },
+
   "fair_principles": {
     "findable": true,
     "accessible": true,
@@ -80,6 +80,39 @@
     "sql_views": "sql/views.sql",
     "api_loader": "src/dbrepo_api_loader.py",
     "notebook": "notebooks/dbrepo_api_test.ipynb"
+  },
+
+  "semantic_mappings": {
+    "DISTRICT_CODE": {
+      "semantic_concept": "Administrative territorial unit",
+      "ontology": "GeoNames Ontology",
+      "uri": "http://www.geonames.org/ontology#Feature"
+    },
+    "REF_YEAR": {
+      "semantic_concept": "Temporal position",
+      "ontology": "OWL-Time",
+      "uri": "http://www.w3.org/2006/time#TemporalPosition"
+    },
+    "SEX": {
+      "semantic_concept": "Sex of individual",
+      "ontology": "SDMX Demographic Concepts",
+      "uri": "https://purl.org/linked-data/sdmx/2009/concept#sex"
+    },
+    "AGE5": {
+      "semantic_concept": "Age classification",
+      "ontology": "SDMX Demographic Concepts",
+      "uri": "https://purl.org/linked-data/sdmx/2009/concept#age"
+    },
+    "nationality_group": {
+      "semantic_concept": "Nationality or citizenship",
+      "ontology": "SDMX Demographic Concepts",
+      "uri": "https://purl.org/linked-data/sdmx/2009/concept#refArea"
+    },
+    "population_count": {
+      "semantic_concept": "Quantity value",
+      "ontology": "QUDT",
+      "uri": "http://qudt.org/schema/qudt/QuantityValue"
+    }
   },
 
   "contributors": [
