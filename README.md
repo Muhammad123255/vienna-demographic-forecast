@@ -254,7 +254,7 @@ This licence was selected because the outputs are derived from openly licensed i
 
 - A — Bernhard Siegl — ORCID: TODO
 - B — Muhammad Umer Raza — ORCID: TODO
-- C — Jannatul Jahan Bonny — ORCID: TODO
+- C — Jannatul Jahan Bonny — ORCID: https://orcid.org/0009-0004-6244-3437
 - D — Usman Arif — ORCID: TODO
 
 ## Persistent identifiers
