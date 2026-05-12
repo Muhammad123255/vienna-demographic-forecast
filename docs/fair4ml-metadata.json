@@ -53,14 +53,14 @@
     "evaluation_script": "src/03_evaluate_model.py"
   },
   "licence": {
-    "input_data": "TODO",
+    "input_data": "CC BY 4.0"
     "code": "MIT",
     "model_and_outputs": "CC BY 4.0"
   },
   "related_resources": {
     "github_repository": "https://github.com/Muhammad123255/vienna-demographic-forecast",
     "github_release": "https://github.com/Muhammad123255/vienna-demographic-forecast/releases/tag/v1.0",
-    "zenodo_doi": "TODO",
+    "zenodo_doi": "https://doi.org/10.5281/zenodo.20120239"
     "dbrepo_url": "TODO",
     "tuwrd_model_deposit": "TODO",
     "model_card": "docs/model-card.md",
