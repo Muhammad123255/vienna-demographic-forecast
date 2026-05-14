@@ -1,0 +1,136 @@
+{
+  "metadata_standard": "FAIR4ML",
+  "project_title": "Forecasting Demographic Changes in the Population in Vienna using Machine Learning",
+  "model": {
+    "name": "Vienna demographic population forecasting model",
+    "version": "v1.0",
+    "model_artifact": "outputs/model_random_forest_population_forecast_v1.pkl",
+    "algorithm": {
+      "name": "Random Forest Regressor",
+      "library": "scikit-learn",
+      "library_version": "1.3.2"
+    },
+    "task_type": "regression",
+    "target_variable": "population_count",
+    "intended_use": "The model is intended to forecast aggregated demographic population counts in Vienna using historical population statistics grouped by district, sex, age group, and nationality group.",
+    "out_of_scope_use": "The model must not be used for individual-level prediction, legal decisions, migration policy decisions, or decisions affecting individual persons.",
+    "known_limitations": [
+      "The dataset contains aggregated demographic statistics and cannot represent individual-level behaviour.",
+      "The model depends on historical demographic trends and may not capture unexpected social, political, economic, or migration-related changes.",
+      "Small demographic groups may have fewer observations and therefore less stable forecasts.",
+      "The meaning of encoded categories such as SEX and AGE5 must be documented carefully to avoid misinterpretation."
+    ]
+  },
+  "training_data": {
+    "name": "Population by sex, 5-year age groups and nationality since 2002 - districts of Vienna",
+    "raw_file": "data/vie-bez-pop-sex-age5-stk-nat-geo4-2002f.csv",
+    "processed_file": "data/processed_population_long_v1.csv",
+    "source": "data.europa.eu / Statistik Austria",
+    "doi": "https://doi.org/10.5281/zenodo.20120239",
+    "dbrepo_url": "https://test.dbrepo.tuwien.ac.at/database/38707917-e942-45c3-a3dd-d2bfc1c106af",
+    "description": "The dataset contains yearly population counts for Vienna from 2002 to 2025 by district, sex, 5-year age group, and nationality group."
+  },
+  "features": [
+    "REF_YEAR",
+    "DISTRICT_CODE",
+    "SUB_DISTRICT_CODE",
+    "SEX",
+    "AGE5",
+    "nationality_group"
+  ],
+  "hyperparameters": {
+    "n_estimators": "TBD after training",
+    "max_depth": "TBD after training",
+    "random_state": "42",
+    "train_test_split": "0.8"
+  },
+  "evaluation": {
+    "metrics": {
+      "MAE": "TBD after training",
+      "RMSE": "TBD after training",
+      "R2": "TBD after training"
+    },
+    "evaluation_script": "src/03_evaluate_model.py"
+  },
+  "licence": {
+    "input_data": "CC BY 4.0",
+    "code": "MIT",
+    "model_and_outputs": "CC BY 4.0"
+  },
+  "related_resources": {
+    "github_repository": "https://github.com/Muhammad123255/vienna-demographic-forecast",
+    "github_release": "https://github.com/Muhammad123255/vienna-demographic-forecast/releases/tag/v1.0",
+    "zenodo_doi": "https://doi.org/10.5281/zenodo.20120239",
+    "dbrepo_url": "https://test.dbrepo.tuwien.ac.at/database/38707917-e942-45c3-a3dd-d2bfc1c106af",
+    "tuwrd_model_deposit": "TBD - Owner A",
+    "model_card": "docs/model-card.md",
+    "ro_crate": "ro-crate-metadata.json"
+  },
+  "fair_principles": {
+    "findable": true,
+    "accessible": true,
+    "interoperable": true,
+    "reusable": true
+  },
+  "reproducibility": {
+    "python_version": "3.11.4",
+    "requirements_file": "requirements.txt",
+    "sql_views": "sql/views.sql",
+    "api_loader": "src/dbrepo_api_loader.py",
+    "notebook": "notebooks/dbrepo_api_test.ipynb"
+  },
+  "semantic_mappings": {
+    "DISTRICT_CODE": {
+      "semantic_concept": "Administrative territorial unit",
+      "ontology": "GeoNames Ontology",
+      "uri": "http://www.geonames.org/ontology#Feature"
+    },
+    "REF_YEAR": {
+      "semantic_concept": "Temporal position",
+      "ontology": "OWL-Time",
+      "uri": "http://www.w3.org/2006/time#TemporalPosition"
+    },
+    "SEX": {
+      "semantic_concept": "Sex of individual",
+      "ontology": "SDMX Demographic Concepts",
+      "uri": "https://purl.org/linked-data/sdmx/2009/concept#sex"
+    },
+    "AGE5": {
+      "semantic_concept": "Age classification",
+      "ontology": "SDMX Demographic Concepts",
+      "uri": "https://purl.org/linked-data/sdmx/2009/concept#age"
+    },
+    "nationality_group": {
+      "semantic_concept": "Nationality or citizenship",
+      "ontology": "SDMX Demographic Concepts",
+      "uri": "https://purl.org/linked-data/sdmx/2009/concept#refArea"
+    },
+    "population_count": {
+      "semantic_concept": "Quantity value",
+      "ontology": "QUDT",
+      "uri": "http://qudt.org/schema/qudt/QuantityValue"
+    }
+  },
+  "contributors": [
+    {
+      "name": "Bernhard Siegl",
+      "role": "Schema design and DBRepo preparation",
+      "orcid": "https://orcid.org/0009-0008-7401-6845"
+    },
+    {
+      "name": "Muhammad Umer Raza",
+      "role": "Semantic mappings and ontology integration",
+      "orcid": "https://orcid.org/0009-0003-6708-7518"
+    },
+    {
+      "name": "Jannatul Jahan Bonny",
+      "role": "Metadata and FAIR documentation",
+      "orcid": "https://orcid.org/0009-0004-6244-3437"
+    },
+    {
+      "name": "Usman Arif",
+      "role": "SQL views, DBRepo API integration, ML preparation",
+      "orcid": "https://orcid.org/0009-0004-1313-6270"
+    }
+  ]
+}
