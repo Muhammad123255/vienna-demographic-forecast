@@ -1,52 +1,55 @@
 # Model Card
 
-# Vienna Demographic Population Forecasting Model
+## Model Details
 
-## Model Overview
+### Model Name
 
-This project develops machine learning workflows for forecasting demographic population changes in Vienna using aggregated statistical data.
+Vienna Demographic Forecasting Workflow
 
-The forecasting workflow uses historical demographic observations grouped by:
+---
+
+## Model Version
+
+v1.0.0
+
+---
+
+## Authors
+
+| Role | Name | ORCID |
+|---|---|---|
+| A | Bernhard Siegl | https://orcid.org/0009-0008-7401-6845 |
+| B | Muhammad Umer Raza | https://orcid.org/0009-0003-6708-7518 |
+| C | Jannatul Jahan Bonny | https://orcid.org/0009-0004-6244-3437 |
+| D | Usman Arif | https://orcid.org/0009-0004-1313-6270 |
+
+---
+
+# Intended Use
+
+The workflow is designed for:
+
+- demographic trend analysis
+- machine learning preprocessing
+- population forecasting preparation
+- FAIR data stewardship workflows
+- DBRepo API experimentation
+- reproducible demographic analytics
+
+---
+
+# Dataset Description
+
+The project uses demographic population data for Vienna obtained from Statistik Austria.
+
+The dataset contains yearly population observations grouped by:
 
 - district
 - sex
-- age group
-- nationality category
-- year
+- 5-year age groups
+- nationality categories
 
-The project supports FAIR data stewardship, metadata interoperability, and reproducible ML workflows.
+Years covered:
 
----
-
-# Model Details
-
-| Attribute | Value |
-|---|---|
-| Model type | Random Forest Regressor |
-| ML framework | scikit-learn |
-| Prediction task | Population forecasting |
-| Target variable | population_count |
-| Task category | Regression |
-| Geographic scope | Vienna, Austria |
-| Temporal coverage | 2002–2024 |
-| Dataset source | Statistik Austria |
-
----
-
-# Input Features
-
-| Feature | Description |
-|---|---|
-| REF_YEAR | Reference year |
-| DISTRICT_CODE | Vienna district identifier |
-| SUB_DISTRICT_CODE | Sub-district identifier |
-| SEX | Sex category |
-| AGE5 | 5-year age group |
-| nationality_group | Nationality category |
-
----
-
-# Target Variable
-
-```text
-population_count
+```text id="yd9f0j"
+2002–2025
