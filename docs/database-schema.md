@@ -2,47 +2,107 @@
 
 ## Overview
 
-This document describes the relational database schema used for the Vienna demographic forecasting project.
+This document describes the normalized relational database schema used for the Vienna demographic forecasting project.
 
-The schema was designed to support:
+The schema supports:
 
-- demographic data storage
-- SQL aggregation views
+- demographic population storage
+- FAIR data stewardship
+- DBRepo integration
+- SQL analytical views
 - machine learning preprocessing
-- FAIR metadata integration
-- DBRepo API access
 - reproducible demographic analytics
 
-The schema is based on the **processed dataset** (`processed_population_long_v1.csv`), which is a denormalized, long-format transformation of the original Statistik Austria data. This structure is optimized for the 9 SQL views and the machine learning pipeline.
+The schema follows a normalized relational design (3NF) implemented inside DBRepo.
+
+The original Statistik Austria dataset was transformed into relational lookup tables and a central fact table to improve interoperability, consistency, and FAIR compliance.
 
 ---
 
-# Main Table
+# Database Schema Design
 
-## population_data
+The schema contains one central fact table and multiple lookup dimension tables.
 
-This table stores yearly demographic population statistics for Vienna districts in long format.
+## Main Fact Table
+
+### Population_statistics
+
+This table stores yearly demographic population observations.
 
 | Column | Data Type | Description |
-|--------|-----------|-------------|
-| NUTS | VARCHAR | NUTS region code for Vienna (AT13) |
-| DISTRICT_CODE | INTEGER | Vienna district code (90100 to 92300) |
-| SUB_DISTRICT_CODE | INTEGER | Sub-district code (same as district code) |
-| REF_YEAR | INTEGER | Reference year (2002-2025) |
-| REF_DATE | DATE | Reference observation date (January 1st) |
-| SEX | INTEGER | Sex category (1 = Male, 2 = Female) |
-| AGE5 | INTEGER | 5-year age group code (1 to 17) |
-| AUT | INTEGER | Population count for Austrian nationals |
-| EEA | INTEGER | Population count for other EEA nationals |
-| REU | INTEGER | Population count for Rest of Europe nationals |
-| TCN | INTEGER | Population count for Third-Country Nationals |
+|---|---|---|
+| population_id | INTEGER | Primary key |
+| district_code | INTEGER | Foreign key to District |
+| year | INTEGER | Foreign key to Time_dimension |
+| sex_id | INTEGER | Foreign key to Sex |
+| age_group_id | INTEGER | Foreign key to Age_group |
+| nationality_code | VARCHAR | Foreign key to Nationality_group |
+| population_count | INTEGER | Population count |
+
+---
+
+# Dimension Tables
+
+## District
+
+Administrative districts of Vienna.
+
+| Column | Data Type | Description |
+|---|---|---|
+| district_code | INTEGER | Primary key |
+| district_name | VARCHAR | District name |
+| nuts_code | VARCHAR | NUTS regional code |
+
+---
+
+## Time_dimension
+
+Temporal lookup table.
+
+| Column | Data Type | Description |
+|---|---|---|
+| year | INTEGER | Primary key |
+| ref_date | DATE | Reference date |
+
+---
+
+## Sex
+
+Lookup table for demographic sex categories.
+
+| Column | Data Type | Description |
+|---|---|---|
+| sex_id | INTEGER | Primary key |
+| sex_label | VARCHAR | Male / Female |
+
+---
+
+## Age_group
+
+Lookup table for demographic age categories.
+
+| Column | Data Type | Description |
+|---|---|---|
+| age_group_id | INTEGER | Primary key |
+| age_range | VARCHAR | 5-year age interval |
+
+---
+
+## Nationality_group
+
+Lookup table for grouped nationality categories.
+
+| Column | Data Type | Description |
+|---|---|---|
+| nationality_code | VARCHAR | Primary key |
+| nationality_label | VARCHAR | Nationality group description |
 
 ---
 
 # Age Group Mapping
 
 | AGE5 Code | Age Range |
-|-----------|-----------|
+|---|---|
 | 1 | 0-4 years |
 | 2 | 5-9 years |
 | 3 | 10-14 years |
@@ -66,48 +126,33 @@ This table stores yearly demographic population statistics for Vienna districts 
 # Sex Mapping
 
 | SEX Code | Meaning |
-|----------|---------|
+|---|---|
 | 1 | Male |
 | 2 | Female |
 
 ---
 
-# Primary Key Strategy
+# Nationality Group Mapping
 
-The dataset does not contain a single natural primary key.
-
-A composite key can be formed using:
-
-- DISTRICT_CODE
-- SUB_DISTRICT_CODE
-- REF_YEAR
-- SEX
-- AGE5
-
-This combination uniquely identifies demographic records for a specific population segment.
+| Code | Meaning |
+|---|---|
+| AUT | Austrian nationals |
+| EEA | European Economic Area nationals |
+| REU | Remaining European nationals |
+| TCN | Third-country nationals |
 
 ---
 
-# Data Relationships
+# Schema Relationships
 
-The schema structure supports:
+The schema uses relational foreign-key relationships.
 
-- yearly demographic aggregation
-- district-level demographic analysis
-- nationality-group analysis (AUT, EEA, REU, TCN)
-- machine learning feature extraction
-- SQL analytical views
-- forecasting-ready demographic preprocessing
-- TCN share analysis over time
-- population pyramid generation
-- age dependency ratio calculations
-- sex ratio analysis
-
----
-
-# SQL Views
-
-The database includes analytical SQL views defined in:
+## Relationship Structure
 
 ```text
-sql/views.sql
+Population_statistics
+ ├── District
+ ├── Time_dimension
+ ├── Sex
+ ├── Age_group
+ └── Nationality_group
