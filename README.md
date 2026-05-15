@@ -26,10 +26,11 @@ The input dataset contains yearly population counts from 2002 to 2025 grouped by
 The workflow combines:
 
 - demographic data preprocessing
-- SQL aggregation views
+- normalized relational database design
+- SQL analytical views
 - metadata generation
 - FAIR documentation
-- DBRepo API preparation
+- DBRepo API integration
 - machine learning pipeline preparation
 - reproducible research workflows
 
@@ -52,7 +53,7 @@ vienna-demographic-forecast/
 ├── metadata/              # FAIR metadata and model documentation
 ├── notebooks/             # Jupyter notebooks for DBRepo API testing
 ├── outputs/               # Generated outputs and results
-├── sql/                   # SQL aggregation views
+├── sql/                   # SQL analytical views
 ├── src/                   # Python source code
 ├── tests/                 # Test files
 │
@@ -255,28 +256,52 @@ Database schema documentation is available in:
 docs/database-schema.md
 ```
 
-The schema was adapted to match the real demographic dataset structure instead of the initially simplified structure.
+The project uses a normalized relational database schema (3NF) implemented in DBRepo.
+
+Main relational tables:
+
+- Population_statistics
+- District
+- Time_dimension
+- Sex
+- Age_group
+- Nationality_group
+
+The normalized schema improves:
+
+- FAIR interoperability
+- metadata consistency
+- DBRepo compatibility
+- reproducible analytical workflows
 
 ---
 
 # SQL Views
 
-The project contains demographic SQL aggregation views inside:
+The project contains DBRepo-compatible SQL views inside:
 
 ```text
 sql/views.sql
 ```
 
-The SQL views generate:
+The SQL views are implemented using the normalized relational schema stored in DBRepo.
 
-- yearly population summaries
-- district-level aggregations
-- nationality summaries
-- TCN share analysis over time
-- population pyramid data
-- age dependency ratios
-- sex ratios by age group
-- ML-ready analytical tables
+The views support:
+
+- demographic filtering
+- district-level demographic access
+- nationality analysis
+- population pyramid preparation
+- machine learning preprocessing
+
+Due to DBRepo SQL limitations, the views use simplified SQL operations such as:
+
+- projections
+- joins
+- filtering
+- ordering
+
+Complex aggregations and unsupported SQL constructs are avoided.
 
 ---
 
@@ -284,15 +309,9 @@ The SQL views generate:
 
 | View Name | Purpose |
 |---|---|
-| yearly_population_summary | Total population per year |
-| district_population_summary | Population per district per year |
-| nationality_population_summary | Breakdown by AUT/EEA/REU/TCN per year |
-| v_tcn_share_by_year | TCN percentage over time |
-| v_tcn_share_by_age | TCN percentage by age group |
-| v_population_pyramid | Age-sex structure for population pyramid plots |
-| v_ml_training_sample | Class-balanced sample for ML training |
-| v_age_dependency_ratios | Youth and old-age dependency ratios |
-| v_sex_ratio_by_age | Males per 100 females by age group |
+| population_by_district | Population records by district and year |
+| population_by_nationality | Population grouped by nationality category |
+| population_pyramid_base | Age-sex demographic structure for visualization and ML preparation |
 
 ---
 
@@ -316,7 +335,7 @@ The preprocessing workflow includes:
 
 # DBRepo API Integration
 
-The project includes DBRepo API preparation for FAIR repository integration.
+The project includes DBRepo API integration for FAIR repository workflows.
 
 ## Python API Loader
 
@@ -330,12 +349,18 @@ src/dbrepo_api_loader.py
 notebooks/dbrepo_api_test.ipynb
 ```
 
-The DBRepo workflow is prepared for:
+The notebook demonstrates:
 
-- REST API testing
-- demographic SQL view retrieval
-- dataframe loading
-- metadata integration
+- retrieval of demographic data exclusively from DBRepo REST API
+- access to SQL VIEW endpoints
+- dataframe loading using pandas
+- reproducible FAIR workflows
+
+The notebook currently tests the following DBRepo-compatible views:
+
+- population_by_district
+- population_by_nationality
+- population_pyramid_base
 
 ---
 
@@ -468,7 +493,7 @@ The project produces:
 - prediction files
 - evaluation metrics
 - plots and visualisations
-- DBRepo-compatible demographic summaries
+- DBRepo-compatible analytical outputs
 
 ---
 
@@ -528,7 +553,7 @@ Produced artefacts including:
 |---|---|
 | GitHub Repository | https://github.com/Muhammad123255/vienna-demographic-forecast |
 | GitHub Release | https://github.com/Muhammad123255/vienna-demographic-forecast/releases/tag/v1.0 |
-| Zenodo DOI | [![DOI](https://zenodo.org/badge/1016481592.svg)](https://doi.org/10.5281/zenodo.20120239) |
+| Zenodo DOI | https://doi.org/10.5281/zenodo.20120239 |
 | DBRepo Entry | https://test.dbrepo.tuwien.ac.at/database/38707917-e942-45c3-a3dd-d2bfc1c106af |
 
 ---
@@ -537,10 +562,11 @@ Produced artefacts including:
 
 - docs/unit-mapping.md
 - docs/database-schema.md
+- docs/semantic-mapping.md
 - metadata/fair4ml-metadata.json
 - metadata/model-card.md
-- codemeta.json
 - metadata/croissant.json
+- codemeta.json
+- CITATION.cff
 
 ---
-
