@@ -21,6 +21,7 @@ authors:
     orcid: "https://orcid.org/0009-0004-1313-6270"
 
 version: "1.0.0"
+
 date-released: 2026-05-11
 
 doi: "10.5281/zenodo.20120239"
@@ -50,6 +51,7 @@ abstract: >
 
 preferred-citation:
   type: software
+
   authors:
     - family-names: "Siegl"
       given-names: "Bernhard"
@@ -64,6 +66,9 @@ preferred-citation:
       given-names: "Usman"
 
   title: "Vienna-Demographic-Forecast"
+
   version: "1.0.0"
+
   doi: "10.5281/zenodo.20120239"
+
   year: 2026
