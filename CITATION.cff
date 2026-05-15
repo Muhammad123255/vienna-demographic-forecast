@@ -1,31 +1,69 @@
 cff-version: 1.2.0
-message: "If you use this dataset, please cite it as follows."
-title: "Vienna Demographic Forecast Dataset"
-version: 1.0.0
-doi: 10.5281/zenodo.20120239
-url: "https://github.com/Muhammad123255/vienna-demographic-forecast"
-date-released: 2026-05-11
-license: MIT
+title: "Vienna-Demographic-Forecast"
+message: "If you use this repository, please cite it using the metadata below."
+type: software
 
 authors:
   - family-names: "Siegl"
     given-names: "Bernhard"
     orcid: "https://orcid.org/0009-0008-7401-6845"
+
   - family-names: "Raza"
     given-names: "Muhammad Umer"
     orcid: "https://orcid.org/0009-0003-6708-7518"
+
   - family-names: "Bonny"
     given-names: "Jannatul Jahan"
     orcid: "https://orcid.org/0009-0004-6244-3437"
+
   - family-names: "Arif"
     given-names: "Usman"
     orcid: "https://orcid.org/0009-0004-1313-6270"
 
+version: "1.0.0"
+date-released: 2026-05-11
+
+doi: "10.5281/zenodo.20120239"
+
 repository-code: "https://github.com/Muhammad123255/vienna-demographic-forecast"
+
+url: "https://github.com/Muhammad123255/vienna-demographic-forecast"
+
+license: "MIT"
+
 keywords:
-  - population
-  - demographics
-  - Vienna
-  - TCN
-  - migration
+  - FAIR data
+  - demographic forecasting
   - machine learning
+  - Vienna population
+  - DBRepo
+  - metadata
+  - SQL views
+  - Zenodo
+  - data stewardship
+
+abstract: >
+  Machine learning workflow for forecasting demographic
+  changes in Vienna using open demographic population data,
+  FAIR metadata standards, SQL analytical views, and DBRepo
+  integration.
+
+preferred-citation:
+  type: software
+  authors:
+    - family-names: "Siegl"
+      given-names: "Bernhard"
+
+    - family-names: "Raza"
+      given-names: "Muhammad Umer"
+
+    - family-names: "Bonny"
+      given-names: "Jannatul Jahan"
+
+    - family-names: "Arif"
+      given-names: "Usman"
+
+  title: "Vienna-Demographic-Forecast"
+  version: "1.0.0"
+  doi: "10.5281/zenodo.20120239"
+  year: 2026
