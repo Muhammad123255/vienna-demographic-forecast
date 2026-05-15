@@ -23,9 +23,11 @@ The original Statistik Austria dataset was transformed into relational lookup ta
 
 The schema contains one central fact table and multiple lookup dimension tables.
 
-## Main Fact Table
+---
 
-### Population_statistics
+# Main Fact Table
+
+## Population_statistics
 
 This table stores yearly demographic population observations.
 
