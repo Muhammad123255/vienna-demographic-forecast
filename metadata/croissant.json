@@ -1,35 +1,21 @@
 {
   "@context": {
     "@vocab": "https://schema.org/",
-    "cr": "http://mlcommons.org/croissant/",
-    "qudt": "http://qudt.org/vocab/unit/"
+    "cr": "http://mlcommons.org/croissant/"
   },
+
   "@type": "Dataset",
-  "name": "Vienna Demographic Forecast Dataset",
-  "description": "Demographic population dataset for Vienna districts containing yearly population statistics (2002-2025) grouped by sex, 5-year age groups, and nationality categories (AUT, EEA, REU, TCN). Data originates from Statistik Austria via data.europa.eu.",
+
+  "name": "Vienna Demographic Forecasting Dataset",
+
+  "description": "Demographic population dataset and FAIR machine learning workflow for forecasting demographic changes in Vienna using DBRepo integration and normalized relational schema design.",
+
   "license": "https://creativecommons.org/licenses/by/4.0/",
+
   "url": "https://github.com/Muhammad123255/vienna-demographic-forecast",
-  "version": "1.0.0",
-  "temporalCoverage": "2002/2025",
-  "spatialCoverage": {
-    "@type": "Place",
-    "name": "Vienna, Austria",
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 48.2082,
-      "longitude": 16.3738
-    }
-  },
-  "keywords": [
-    "population",
-    "demographics",
-    "Vienna",
-    "TCN",
-    "migration",
-    "age groups",
-    "districts",
-    "statistics austria"
-  ],
+
+  "sameAs": "https://doi.org/10.5281/zenodo.20120239",
+
   "creator": [
     {
       "@type": "Person",
@@ -52,126 +38,85 @@
       "identifier": "https://orcid.org/0009-0004-1313-6270"
     }
   ],
-  "publisher": {
-    "@type": "Organization",
-    "name": "Statistik Austria",
-    "url": "https://www.statistik.at"
+
+  "keywords": [
+    "FAIR data",
+    "machine learning",
+    "demographic forecasting",
+    "Vienna",
+    "DBRepo",
+    "population statistics",
+    "SQL views",
+    "metadata"
+  ],
+
+  "spatialCoverage": {
+    "@type": "Place",
+    "name": "Vienna, Austria"
   },
+
+  "temporalCoverage": "2002-2025",
+
   "distribution": [
     {
-      "@type": "cr:FileObject",
-      "@id": "raw-demographic-data",
-      "name": "Raw Vienna demographic dataset",
-      "contentUrl": "data/vie-bez-pop-sex-age5-stk-nat-geo4-2002f.csv",
-      "encodingFormat": "text/csv",
-      "description": "Original raw data downloaded from Statistik Austria containing population counts by district, sex, age group, and nationality from 2002-2025."
+      "@type": "DataDownload",
+
+      "name": "DBRepo Dataset",
+
+      "contentUrl": "https://test.dbrepo.tuwien.ac.at/database/38707917-e942-45c3-a3dd-d2bfc1c106af",
+
+      "encodingFormat": "application/json"
+    }
+  ],
+
+  "variableMeasured": [
+    {
+      "@type": "PropertyValue",
+      "name": "district_code"
     },
     {
-      "@type": "cr:FileObject",
-      "@id": "processed-demographic-data",
-      "name": "Processed demographic dataset",
-      "contentUrl": "data/processed_population_long_v1.csv",
-      "encodingFormat": "text/csv",
-      "description": "Processed and cleaned version of the Vienna population dataset, ready for analysis and machine learning."
+      "@type": "PropertyValue",
+      "name": "year"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "sex_id"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "age_group_id"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "nationality_code"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "population_count"
     }
   ],
-  "recordSet": [
+
+  "includedInDataCatalog": {
+    "@type": "DataCatalog",
+    "name": "DBRepo"
+  },
+
+  "additionalProperty": [
     {
-      "@type": "cr:RecordSet",
-      "name": "population_data",
-      "description": "Population statistics grouped by district, year, sex, age group, and nationality. Each row represents a unique combination of district, year, sex, and age group.",
-      "field": [
-        {
-          "@type": "cr:Field",
-          "name": "NUTS",
-          "description": "NUTS code for Vienna (AT13)",
-          "dataType": "string",
-          "unitCode": "https://qudt.org/vocab/quantitykind/Dimensionless",
-          "unitText": "dimensionless"
-        },
-        {
-          "@type": "cr:Field",
-          "name": "DISTRICT_CODE",
-          "description": "Vienna district code (90100 = 1st district, 90200 = 2nd district, ..., 92300 = 23rd district)",
-          "dataType": "integer",
-          "unitCode": "https://qudt.org/vocab/quantitykind/Dimensionless",
-          "unitText": "dimensionless"
-        },
-        {
-          "@type": "cr:Field",
-          "name": "SUB_DISTRICT_CODE",
-          "description": "Sub-district code (same as district code for Vienna)",
-          "dataType": "integer",
-          "unitCode": "https://qudt.org/vocab/quantitykind/Dimensionless",
-          "unitText": "dimensionless"
-        },
-        {
-          "@type": "cr:Field",
-          "name": "REF_YEAR",
-          "description": "Reference year of the population count (2002-2025)",
-          "dataType": "integer",
-          "unitCode": "http://qudt.org/vocab/unit/Year",
-          "unitText": "year"
-        },
-        {
-          "@type": "cr:Field",
-          "name": "REF_DATE",
-          "description": "Reference date (January 1st of each year)",
-          "dataType": "date",
-          "unitCode": "http://qudt.org/vocab/unit/Day",
-          "unitText": "date"
-        },
-        {
-          "@type": "cr:Field",
-          "name": "SEX",
-          "description": "Sex of the population group: 1 = Male, 2 = Female",
-          "dataType": "string",
-          "unitCode": "https://qudt.org/vocab/quantitykind/Dimensionless",
-          "unitText": "dimensionless"
-        },
-        {
-          "@type": "cr:Field",
-          "name": "AGE5",
-          "description": "5-year age group code (1 = 0-4, 2 = 5-9, 3 = 10-14, 4 = 15-19, 5 = 20-24, 6 = 25-29, 7 = 30-34, 8 = 35-39, 9 = 40-44, 10 = 45-49, 11 = 50-54, 12 = 55-59, 13 = 60-64, 14 = 65-69, 15 = 70-74, 16 = 75-79, 17 = 80+)",
-          "dataType": "string",
-          "unitCode": "https://qudt.org/vocab/quantitykind/Dimensionless",
-          "unitText": "dimensionless"
-        },
-        {
-          "@type": "cr:Field",
-          "name": "AUT",
-          "description": "Number of Austrian nationals",
-          "dataType": "integer",
-          "unitCode": "http://qudt.org/vocab/unit/Person",
-          "unitText": "persons"
-        },
-        {
-          "@type": "cr:Field",
-          "name": "EEA",
-          "description": "Number of other EEA nationals (EU countries excluding Austria)",
-          "dataType": "integer",
-          "unitCode": "http://qudt.org/vocab/unit/Person",
-          "unitText": "persons"
-        },
-        {
-          "@type": "cr:Field",
-          "name": "REU",
-          "description": "Number of Rest of Europe nationals (non-EEA European countries including Switzerland, UK, Western Balkans, Turkey)",
-          "dataType": "integer",
-          "unitCode": "http://qudt.org/vocab/unit/Person",
-          "unitText": "persons"
-        },
-        {
-          "@type": "cr:Field",
-          "name": "TCN",
-          "description": "Number of Third-Country Nationals (non-European countries)",
-          "dataType": "integer",
-          "unitCode": "http://qudt.org/vocab/unit/Person",
-          "unitText": "persons"
-        }
+      "@type": "PropertyValue",
+      "name": "database_schema",
+
+      "value": "Normalized relational schema (3NF)"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "sql_views",
+
+      "value": [
+        "population_by_district",
+        "population_by_nationality",
+        "population_pyramid_base"
       ]
     }
-  ],
-  "inLanguage": "en",
-  "acknowledgement": "This dataset was derived from data originally published by Statistik Austria via data.europa.eu."
+  ]
 }
