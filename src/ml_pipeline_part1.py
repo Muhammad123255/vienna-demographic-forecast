@@ -79,7 +79,6 @@ df = df.dropna()
 # Convert numeric columns
 numeric_cols = [
     "DISTRICT_CODE",
-    "SUB_DISTRICT_CODE",
     "REF_YEAR",
     "SEX",
     "AGE5",
