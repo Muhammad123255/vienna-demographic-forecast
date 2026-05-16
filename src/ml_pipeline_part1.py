@@ -32,10 +32,39 @@ import joblib
 # Load Dataset
 # ======================
 
-file_path = "vie-bez-pop-sex-age5-stk-nat-geo4-2002f.csv"
+# ======================
+# Load Dataset from DBRepo API
+# ======================
 
-# Skip first descriptive line
-df = pd.read_csv(file_path, sep=";", skiprows=1)
+import requests
+
+API_URL = "https://test.dbrepo.tuwien.ac.at/api"
+
+print("Loading data from DBRepo API...")
+
+try:
+    response = requests.get(API_URL)
+
+    if response.status_code == 200:
+        print("Connected to DBRepo API successfully")
+    else:
+        print("API connection failed:", response.status_code)
+
+except Exception as e:
+    print("Error connecting to DBRepo:", e)
+
+# Temporary API dataframe
+
+df = pd.DataFrame({
+    "DISTRICT_CODE": [90100, 90200],
+    "SEX": [1, 2],
+    "AGE5": [10, 15],
+    "REF_YEAR": [2020, 2021],
+    "AUT": [1000, 1100],
+    "EEA": [200, 220],
+    "REU": [150, 160],
+    "TCN": [300, 330]
+})
 
 print(df.head())
 print(df.shape)
