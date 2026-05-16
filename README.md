@@ -1,5 +1,7 @@
 # Vienna-Demographic-Forecast
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20120239.svg)](https://doi.org/10.5281/zenodo.20120239)
+
 | Zenodo DOI | https://doi.org/10.5281/zenodo.20120239 |
 
 Data Stewardship Course — FAIR Data Science Part 3 Project
@@ -554,6 +556,8 @@ Produced artefacts including:
 | GitHub Release | https://github.com/Muhammad123255/vienna-demographic-forecast/releases/tag/v1.0 |
 | Zenodo DOI | https://doi.org/10.5281/zenodo.20120239 |
 | DBRepo Entry | https://test.dbrepo.tuwien.ac.at/database/38707917-e942-45c3-a3dd-d2bfc1c106af |
+| TUWRD Model Deposit DOI | TODO |
+| TUWRD Generated Data Deposit DOI | TODO |
 
 ---
 
