@@ -1,0 +1,79 @@
+{
+   "@context":"https://w3id.org/ro/crate/1.1/context",
+   "@graph":[
+      {
+         "@id":"ro-crate-metadata.json",
+         "@type":"CreativeWork",
+         "about":{
+            "@id":"./"
+         }
+      },
+      {
+         "@id":"data/vie-bez-pop-sex-age5-stk-nat-geo4-2002f.csv",
+         "@type":[
+            "File",
+            "Dataset"
+         ],
+         "name":"Vienna population dataset",
+         "description":"Population counts by district, sex, age group and nationality.",
+         "encodingFormat":"text/csv",
+         "sourceOrganization":{
+            "@type":"Organization",
+            "name":"Statistik Austria"
+         }
+      },
+      {
+         "@id":"data/processed_population_long_v1.csv",
+         "@type":[
+            "File",
+            "Dataset"
+         ],
+         "name":"Processed population dataset",
+         "encodingFormat":"text/csv"
+      },
+      {
+         "@id":"metadata/croissant.json",
+         "@type":"CreativeWork",
+         "name":"Croissant metadata"
+      },
+      {
+         "@id":"metadata/fair4ml-metadata.json",
+         "@type":"CreativeWork",
+         "name":"FAIR4ML metadata"
+      },
+      {
+         "@id":"metadata/model-card.md",
+         "@type":"CreativeWork",
+         "name":"Model Card"
+      },
+      {
+         "@id":"https://doi.org/10.5281/zenodo.20120239",
+         "@type":"CreativeWork",
+         "name":"Zenodo release"
+      },
+      {
+         "@id":"https://github.com/Muhammad123255/vienna-demographic-forecast",
+         "@type":"CreativeWork",
+         "name":"GitHub repository"
+      },
+      {
+         "@id":"data/population.csv",
+         "@type":[
+            "File",
+            "Dataset"
+         ],
+         "name":"Vienna population dataset",
+         "description":"Population counts by district, sex, age group and nationality.",
+         "encodingFormat":"text/csv",
+         "sourceOrganization":{
+            "@type":"Organization",
+            "name":"Statistik Austria"
+         }
+      },
+      {
+         "@id":"LICENSE",
+         "@type":"CreativeWork",
+         "name":"MIT License"
+      }
+   ]
+}
