@@ -409,12 +409,10 @@ Planned machine learning workflow:
 - prediction generation
 - evaluation and visualization
 
-Potential machine learning models:
+Machine learning models:
 
 - Random Forest
-- XGBoost
 - Linear Regression
-- Time-series forecasting models
 
 ---
 
@@ -477,6 +475,7 @@ Main Python libraries:
 - matplotlib
 - requests
 - jupyter
+- joblib
 
 Full list with versions: `requirements.txt`
 
