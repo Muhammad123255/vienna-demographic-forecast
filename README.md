@@ -2,8 +2,6 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20120239.svg)](https://doi.org/10.5281/zenodo.20120239)
 
-| Zenodo DOI | https://doi.org/10.5281/zenodo.20120239 |
-
 Data Stewardship Course — FAIR Data Science Part 3 Project
 
 ---
