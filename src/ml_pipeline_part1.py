@@ -4,9 +4,6 @@
 #   1. Linear Regression
 #   2. Random Forest Regressor
 #
-# Input:
-#   vie-bez-pop-sex-age5-stk-nat-geo4-2002f.csv
-#
 # Outputs:
 #   - trained models
 #   - evaluation metrics
@@ -21,22 +18,17 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import requests
+import joblib
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
-import joblib
 
 # ======================
-# Load Dataset
+# DBRepo API Connection
 # ======================
-
-# ======================
-# Load Dataset from DBRepo API
-# ======================
-
-import requests
 
 API_URL = "https://test.dbrepo.tuwien.ac.at/api"
 
@@ -53,17 +45,20 @@ try:
 except Exception as e:
     print("Error connecting to DBRepo:", e)
 
-# Temporary API dataframe
+# ======================
+# Temporary DataFrame
+# (Replace later with actual API endpoint data)
+# ======================
 
 df = pd.DataFrame({
-    "DISTRICT_CODE": [90100, 90200],
-    "SEX": [1, 2],
-    "AGE5": [10, 15],
-    "REF_YEAR": [2020, 2021],
-    "AUT": [1000, 1100],
-    "EEA": [200, 220],
-    "REU": [150, 160],
-    "TCN": [300, 330]
+    "DISTRICT_CODE": [90100, 90200, 90300, 90400],
+    "SEX": [1, 2, 1, 2],
+    "AGE5": [10, 15, 20, 25],
+    "REF_YEAR": [2020, 2021, 2022, 2023],
+    "AUT": [1000, 1100, 1200, 1300],
+    "EEA": [200, 220, 240, 260],
+    "REU": [150, 160, 170, 180],
+    "TCN": [300, 330, 360, 390]
 })
 
 print(df.head())
@@ -73,10 +68,8 @@ print(df.shape)
 # Basic Cleaning
 # ======================
 
-# Remove missing values if any
 df = df.dropna()
 
-# Convert numeric columns
 numeric_cols = [
     "DISTRICT_CODE",
     "REF_YEAR",
@@ -97,10 +90,13 @@ df = df.dropna()
 # Feature Engineering
 # ======================
 
-# Total population across nationality groups
-df["TOTAL_POP"] = df["AUT"] + df["EEA"] + df["REU"] + df["TCN"]
+df["TOTAL_POP"] = (
+    df["AUT"] +
+    df["EEA"] +
+    df["REU"] +
+    df["TCN"]
+)
 
-# Features
 X = df[
     [
         "DISTRICT_CODE",
@@ -110,7 +106,6 @@ X = df[
     ]
 ]
 
-# Target
 y = df["TOTAL_POP"]
 
 # ======================
@@ -138,6 +133,7 @@ lr_model.fit(X_train, y_train)
 lr_predictions = lr_model.predict(X_test)
 
 # Evaluation
+
 lr_mae = mean_absolute_error(y_test, lr_predictions)
 lr_rmse = np.sqrt(mean_squared_error(y_test, lr_predictions))
 lr_r2 = r2_score(y_test, lr_predictions)
@@ -162,6 +158,7 @@ rf_model.fit(X_train, y_train)
 rf_predictions = rf_model.predict(X_test)
 
 # Evaluation
+
 rf_mae = mean_absolute_error(y_test, rf_predictions)
 rf_rmse = np.sqrt(mean_squared_error(y_test, rf_predictions))
 rf_r2 = r2_score(y_test, rf_predictions)
@@ -182,9 +179,12 @@ metrics_df = pd.DataFrame({
     "R2": [lr_r2, rf_r2]
 })
 
-metrics_df.to_csv("outputs/model_metrics.csv", index=False)
+metrics_df.to_csv(
+    "outputs/metrics/model_metrics.csv",
+    index=False
+)
 
-print("\nSaved metrics to outputs/model_metrics.csv")
+print("\nSaved metrics")
 
 # ============================================
 # Save Predictions
@@ -199,12 +199,12 @@ rf_results["Actual"] = y_test.values
 rf_results["Predicted"] = rf_predictions
 
 lr_results.to_csv(
-    "outputs/linear_regression_predictions.csv",
+    "outputs/predictions/linear_regression_predictions.csv",
     index=False
 )
 
 rf_results.to_csv(
-    "outputs/random_forest_predictions.csv",
+    "outputs/predictions/random_forest_predictions.csv",
     index=False
 )
 
@@ -214,8 +214,15 @@ print("Saved prediction files")
 # Save Models
 # ============================================
 
-joblib.dump(lr_model, "outputs/linear_regression_model.joblib")
-joblib.dump(rf_model, "outputs/random_forest_model.joblib")
+joblib.dump(
+    lr_model,
+    "outputs/models/linear_regression_model.joblib"
+)
+
+joblib.dump(
+    rf_model,
+    "outputs/models/random_forest_model.joblib"
+)
 
 print("Saved trained models")
 
@@ -241,6 +248,7 @@ plt.scatter(
 
 plt.xlabel("Actual Population")
 plt.ylabel("Predicted Population")
+
 plt.title("Actual vs Predicted Population")
 
 plt.legend()
@@ -248,7 +256,7 @@ plt.legend()
 plt.tight_layout()
 
 plt.savefig(
-    "outputs/model_comparison_plot.png",
+    "outputs/plots/model_comparison_plot.png",
     dpi=300
 )
 
@@ -257,7 +265,7 @@ plt.show()
 print("Saved comparison plot")
 
 # ============================================
-# Feature Importance (Random Forest)
+# Feature Importance
 # ============================================
 
 feature_importance = pd.DataFrame({
@@ -274,7 +282,7 @@ print("\nFeature Importance:")
 print(feature_importance)
 
 feature_importance.to_csv(
-    "outputs/random_forest_feature_importance.csv",
+    "outputs/metrics/random_forest_feature_importance.csv",
     index=False
 )
 
@@ -290,8 +298,17 @@ future_data = pd.DataFrame({
 })
 
 future_prediction_lr = lr_model.predict(future_data)
+
 future_prediction_rf = rf_model.predict(future_data)
 
 print("\n===== Future Forecast Example =====")
-print("Linear Regression Prediction:", future_prediction_lr[0])
-print("Random Forest Prediction:", future_prediction_rf[0])
+
+print(
+    "Linear Regression Prediction:",
+    future_prediction_lr[0]
+)
+
+print(
+    "Random Forest Prediction:",
+    future_prediction_rf[0]
+)
