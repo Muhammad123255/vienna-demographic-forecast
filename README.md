@@ -31,7 +31,7 @@ The workflow combines:
 - metadata generation
 - FAIR documentation
 - DBRepo API integration
-- machine learning pipeline preparation
+- machine learning pipeline implementation
 - reproducible research workflows
 
 The project follows FAIR principles:
@@ -53,6 +53,10 @@ vienna-demographic-forecast/
 ├── metadata/              # FAIR metadata and model documentation
 ├── notebooks/             # Jupyter notebooks for DBRepo API testing
 ├── outputs/               # Generated outputs and results
+│   ├── metrics/
+│   ├── models/
+│   ├── plots/
+│   └── predictions/
 ├── sql/                   # SQL analytical views
 ├── src/                   # Python source code
 ├── tests/                 # Test files
@@ -149,6 +153,7 @@ Examples:
 02_train_model.py
 03_evaluate_model.py
 04_load_to_dbrepo.py
+ml_pipeline_part1.py
 ```
 
 ---
@@ -400,7 +405,7 @@ None (public dataset)
 
 # Machine Learning Workflow
 
-Planned machine learning workflow:
+The machine learning workflow includes:
 
 - demographic data preprocessing
 - feature engineering
@@ -409,10 +414,16 @@ Planned machine learning workflow:
 - prediction generation
 - evaluation and visualization
 
-Machine learning models:
+Implemented machine learning models:
 
-- Random Forest
+- Random Forest Regressor
 - Linear Regression
+
+Main ML pipeline:
+
+```text
+src/ml_pipeline_part1.py
+```
 
 ---
 
@@ -449,18 +460,16 @@ jupyter notebook notebooks/dbrepo_api_test.ipynb
 
 ## Step 3: Run SQL Views
 
-Execute the views in `sql/views.sql`.
+Execute the views in:
 
-## Step 4: Train Models
-
-```bash
-python src/02_train_model.py
+```text
+sql/views.sql
 ```
 
-## Step 5: Evaluate Results
+## Step 4: Run Machine Learning Pipeline
 
 ```bash
-python src/03_evaluate_model.py
+python src/ml_pipeline_part1.py
 ```
 
 ---
@@ -477,7 +486,11 @@ Main Python libraries:
 - jupyter
 - joblib
 
-Full list with versions: `requirements.txt`
+Full dependency list with pinned versions is available in:
+
+```text
+requirements.txt
+```
 
 ---
 
@@ -493,6 +506,21 @@ The project produces:
 - evaluation metrics
 - plots and visualisations
 - DBRepo-compatible analytical outputs
+
+Examples of generated outputs:
+
+```text
+outputs/models/random_forest_model.joblib
+outputs/models/linear_regression_model.joblib
+
+outputs/predictions/random_forest_predictions.csv
+outputs/predictions/linear_regression_predictions.csv
+
+outputs/metrics/model_metrics.csv
+outputs/metrics/random_forest_feature_importance.csv
+
+outputs/plots/model_comparison_plot.png
+```
 
 ---
 
@@ -524,7 +552,11 @@ LICENSE
 
 ## Produced Data License
 
-Produced artefacts including:
+Produced data and generated artefacts are licensed under:
+
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Produced artefacts include:
 
 - cleaned datasets
 - ML-ready datasets
@@ -551,7 +583,7 @@ Produced artefacts including:
 | Artefact | Identifier |
 |---|---|
 | GitHub Repository | https://github.com/Muhammad123255/vienna-demographic-forecast |
-| GitHub Release | https://github.com/Muhammad123255/vienna-demographic-forecast/releases/tag/v1.0 |
+| GitHub Release | https://github.com/Muhammad123255/vienna-demographic-forecast/releases/tag/v1.1.0 |
 | Zenodo DOI | https://doi.org/10.5281/zenodo.20120239 |
 | DBRepo Entry | https://test.dbrepo.tuwien.ac.at/database/38707917-e942-45c3-a3dd-d2bfc1c106af |
 | TUWRD Model Deposit DOI | TODO |
